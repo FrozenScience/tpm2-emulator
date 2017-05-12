@@ -1,0 +1,30 @@
+name: tpm2-emulator
+version: '974.4'
+summary: IBM's Software TPM 2 Emulator
+description: |
+  This project is IBM's implementation of the TCG TPM 2.0 specification. It is
+  based on the TPM specification Parts 3 and 4 source code donated by
+  Microsoft, with additional files to complete the implementation.
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: devmode # use 'strict' once you have the right plugs and slots
+
+apps:
+  tpm2-emulator:
+    command: usr/bin/tpm_server
+    plugs: [network, network-bind]
+    aliases: [tpm_server]
+
+parts:
+  tpm2-emulator:
+    source: https://sourceforge.net/projects/ibmswtpm2/files/ibmtpm974.tar.gz
+    source-subdir: src
+    plugin: make
+    build-packages: [libssl-dev]
+    prepare: |
+      cd src
+      patch -p1 < ../../../patches/src/makefile-install.patch
+  patches:
+    source: snap/patches
+    plugin: dump
+    prime:
+      - -*
