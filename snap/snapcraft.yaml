@@ -1,5 +1,5 @@
 name: tpm2-emulator
-version: '974.6'
+version: '1119.1'
 summary: IBM's Software TPM 2 Emulator
 description: |
   This project is IBM's implementation of the TCG TPM 2.0 specification. It is
@@ -16,7 +16,7 @@ apps:
 
 parts:
   tpm2-emulator:
-    source: https://sourceforge.net/projects/ibmswtpm2/files/ibmtpm974.tar.gz
+    source: https://sourceforge.net/projects/ibmswtpm2/files/ibmtpm1119.tar.gz
     source-subdir: src
     plugin: make
     build-packages: [libssl-dev]
